@@ -1,2 +1,5 @@
-# cloudflare-recaptcha-worker
-A site verification function for reCAPTCHA v3 using Cloudflare Workers
+# Cloudflare reCAPTCHA serverless Cloudflare Worker
+A server side site verification function for reCAPTCHA v3 using serverless Cloudflare Workers
+
+
+
