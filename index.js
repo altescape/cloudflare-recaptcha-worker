@@ -59,7 +59,7 @@ async function handleRequest(request) {
       }
 
       return new Response(`reCAPTCHA failed, error: "${errorMsg}"`, {
-        status: 400,
+        status: 418,
         headers
       })
     }
