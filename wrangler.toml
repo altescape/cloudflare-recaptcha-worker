@@ -1,0 +1,5 @@
+name = "recaptcha-worker"
+type = "javascript"
+account_id = "fcca246cb8ea24bd00cf3a6ef2fe151b"
+workers_dev = true
+compatibility_date = "2022-04-26"
