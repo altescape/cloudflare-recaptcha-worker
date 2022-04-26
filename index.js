@@ -14,7 +14,7 @@ async function handleRequest(request) {
   if (request.method === 'OPTIONS') {
     return new Response('', { headers })
   }
-  
+
   // Ensure POST request
   if (request.method !== 'POST') {
     return new Response('Invalid request method', {
