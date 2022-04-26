@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Example form with reCAPTCHA v3</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://www.google.com/recaptcha/api.js?render=<RECAPTCHA_SITE_KEY>"></script>
+    <style>
+      .grecaptcha-lightline {
+        font-size: smaller;
+        opacity: 0.5;
+      }
+
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="demo-form">
+      <input id="firstname" name="firstname" placeholder="First name" value="Tony" />
+      <input id="lastname" name="lastname" placeholder="Last name" value="Stark" />
+      <button type="submit" onclick="onClick(event)">Submit</button>
+    </form>
+
+    <div class="grecaptcha-lightline">
+      This site is protected by reCAPTCHA and the Google
+      <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+      <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+    </div>
+
+    <script>
+      function onClick(e) {
+        e.preventDefault();
+
+        grecaptcha.ready(function () {
+          grecaptcha
+            .execute("<RECAPTCHA_SITE_KEY>", {
+              action: "submit"
+            })
+            .then(function (token) {
+              // Send token to your Cloudflare Worker
+              fetch("<YOUR_WORKER_URL>", {
+                method: "POST",
+                body: token
+              })
+                .then((response) => {
+                  // Success response from Cloudflare Worker
+                  // Do something with the response
+                })
+                .catch((error) => {
+                  // Error response from Cloudflare Worker
+                  console.error(error);
+                });
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
